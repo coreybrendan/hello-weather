@@ -1,7 +1,11 @@
+import { useHistory } from 'react-router-dom';
+
 function Header() {
+  let history = useHistory();
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('a click event!');
+    history.push("/weather");
   }
 
   return(
@@ -10,11 +14,8 @@ function Header() {
       <form action="" >
         <label htmlFor="city">Where to friend?</label>
         <input type="text" id="city" placeholder="Enter a city..." required />
-        <button 
-          type="submit" 
-          onClick={handleSubmit}
-          >Show Me
-        </button>
+        <button type="submit" 
+          onClick={handleSubmit}>Show Me</button>
       </form>
     </header>
   )
