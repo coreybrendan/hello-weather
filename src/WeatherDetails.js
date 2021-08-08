@@ -30,7 +30,7 @@ function WeatherDetails() {
       <div className="currentContainer wrapper">
         <img src={sun} alt="An illustrated sun" className="sun" />
         <h2>Your Current Conditions</h2>
-        {/* <p>Skies above: {current.weather.main}</p> */}
+        {/* <p>Skies above: {current.weather[0].main}</p> */}
         <p>Temperature: {Math.floor(current.temp)} ºC</p>
         <p>But it feels like: {Math.floor(current.feels_like)} ºC</p>
         <p>UV index (sunscreen, always!): {current.uvi}</p>
