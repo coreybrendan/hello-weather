@@ -18,7 +18,6 @@ function WeatherDetails() {
         units: `metric`,
       },
     }).then((res) => {
-      console.log(res);
       setForecast(res.data.daily);
       setCurrent(res.data.current);
     });
