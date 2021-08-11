@@ -16,6 +16,7 @@ function WeatherDetails() {
         lat: 43.6,
         lon: -79.4,
         units: `metric`,
+        format: 'json',
       },
     }).then((res) => {
       setForecast(res.data.daily);
