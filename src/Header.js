@@ -3,15 +3,14 @@ import { useState } from 'react';
 import axios from 'axios';
 
 function Header() {
-  let [city, setCity] = useState('');
+  let [city, setCity] = useState({ latitude: 0, longitude: 0 });
   let history = useHistory();
 
   function handleSubmit() {
-    // event.preventDefault();
     history.push("/weather");
   }
 
-  const namePrefix = encodeURIComponent(city);
+  const cityName = encodeURIComponent(city);
 
   function getCity(e) {
     e.preventDefault();
@@ -19,7 +18,7 @@ function Header() {
       method: 'GET',
       url: `https://geocoding-by-api-ninjas.p.rapidapi.com/v1/geocoding`,
       params: {
-        city: namePrefix,
+        city: cityName,
         format: 'json',
       },
       headers: {
@@ -27,9 +26,12 @@ function Header() {
         'x-rapidapi-host': 'geocoding-by-api-ninjas.p.rapidapi.com'
       }
     }).then((result) => {
-      console.log(result.data[0].latitude);
-      console.log(result.data[0].longitude);
-      // setCity(result.data);
+      // console.log(result.data[0].latitude);
+      // console.log(result.data[0].longitude);
+      setCity({
+        latitude: result.data[0].latitude,
+        longitude: result.data[0].longitude
+      });
     });
 
   }
@@ -39,7 +41,14 @@ function Header() {
       <h1>👋 Hello, Weather!</h1>
       <form action="" onSubmit={getCity} >
         <label htmlFor="city">Where to friend?</label>
-        <input type="text" id="city" placeholder="Enter a city..." value={city.name} onChange={(e) => setCity(e.target.value)} required />
+        <input 
+          type="text" 
+          id="city" 
+          placeholder="Enter a city..." 
+          value={city.name} 
+          onChange={(e) => setCity(e.target.value)} 
+          required 
+        />
         <button type="submit" onClick={handleSubmit}>Show Me</button>
       </form>
     </header>
